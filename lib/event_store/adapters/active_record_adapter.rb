@@ -79,6 +79,7 @@ module EventStore
       
       # Connect to a different database for event storage models
       def establish_connection(options)
+        ActiveRecord::Base.establish_connection(options)
         EventProvider.establish_connection(options)
         Event.establish_connection(options)
       end

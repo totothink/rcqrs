@@ -84,7 +84,7 @@ module EventStore
     # Recreate an aggregate root by re-applying all saved +events+
     def load_aggregate(klass, events)
       create_aggregate(klass).tap do |aggregate|
-        events.map! {|event| create_event(event) }
+        events = events.map {|event| create_event(event) }
         aggregate.load(events)
         track(aggregate)
       end
